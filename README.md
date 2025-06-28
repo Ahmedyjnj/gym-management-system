@@ -21,7 +21,9 @@ This is a Windows Forms desktop application built with C# and Entity Framework C
 - Manage and log payments
 - Display filtered data with summary rows
 - Auto-detect end of subscription period
-
+-record Attendance
+-record payments
+-Installment of the amount available
 ---
 
 ## 🖥️ How to Use
