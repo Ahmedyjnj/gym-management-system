@@ -26,16 +26,48 @@ This is a Windows Forms desktop application built with C# and Entity Framework C
 
 ## 🖥️ How to Use
 
-### 1. 🔽 Download & Install Git
 
-If you don’t have Git installed:
-
-- Go to: https://git-scm.com/downloads
-- Download and install it (keep the default settings)
 
 ### 2. 📥 Clone the repository
 
 Open Command Prompt (or Git Bash), then run:
 
 ```bash
-git clone https://github.com/YourUsername/gym-management-system.git
+  git [clone https://github.com/YourUsername/gym-management-system.git](https://github.com/Ahmedyjnj/gym-management-system.git)
+
+### 3. 🧱 Set up the Database
+
+You can create the required database and tables manually or use the following SQL script:
+
+> 📄 [Click here to download database.sql](./database.sql)
+
+Or copy and paste:
+
+```sql
+CREATE DATABASE gymData;
+USE gymData;
+
+CREATE TABLE Subscriptions (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100),
+    SubscriptionPeriod NVARCHAR(50),
+    Type NVARCHAR(50),
+    PaymentHasBeenMade BIT
+);
+
+CREATE TABLE Attendances (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    SubscribeId INT NOT NULL,
+    AttendanceDate DATETIME NOT NULL,
+    FOREIGN KEY (SubscribeId) REFERENCES Subscriptions(Id)
+);
+
+CREATE TABLE Moneys (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    SubscribeId INT NOT NULL,
+    TotalAmount DECIMAL(18,2) NOT NULL,
+    PaidAmount DECIMAL(18,2) NOT NULL,
+    PaymentDate DATETIME NOT NULL,
+    FOREIGN KEY (SubscribeId) REFERENCES Subscriptions(Id)
+);
+
